@@ -2,7 +2,11 @@ package io.dogsbean.deathanimation.listeners;
 
 import io.dogsbean.deathanimation.Main;
 import net.minecraft.server.v1_8_R3.EntityPlayer;
+import net.minecraft.server.v1_8_R3.PacketPlayOutRespawn;
+import net.minecraft.server.v1_8_R3.WorldServer;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -25,25 +29,29 @@ public class PlayerListener implements Listener {
         simulateDeath(e.getEntity().getPlayer());
     }
 
-    public static void simulateDeath(Player player) {
-        CraftPlayer playerCp = (CraftPlayer)player;
+    private void simulateDeath(Player player) {
+        CraftPlayer playerCp = (CraftPlayer) player;
         EntityPlayer playerEp = playerCp.getHandle();
 
-        Location location = player.getLocation();
-        location.add(0, 0.1, 0);
-        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 10 * 20, 100000, true, false));
-        player.setWalkSpeed(0.0F);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                player.setWalkSpeed(0.2F);
-                player.removePotionEffect(PotionEffectType.JUMP);
-            }
-        }.runTaskLater(Main.getInstance(), 20L);
-
-        player.setHealth(20.0F);
-        player.teleport(location);
         playerEp.getDataWatcher().watch(6, 0.0F);
         playerEp.setFakingDeath(true);
+
+        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> {
+            Bukkit.getOnlinePlayers().forEach(players -> {
+                players.hidePlayer(player);
+                players.showPlayer(player);
+            });
+
+            player.setHealth(player.getMaxHealth());
+            playerEp.setFakingDeath(false);
+            player.getActivePotionEffects().stream().map(PotionEffect::getType).forEach(player::removePotionEffect);
+            player.setWalkSpeed(0.2F);
+            player.setAllowFlight(true);
+        }, 20L);
+
+        player.setWalkSpeed(0.0F);
+        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 10000, -5));
+        player.setVelocity(player.getLocation().getDirection().setY(1));
+        player.updateInventory();
     }
 }
