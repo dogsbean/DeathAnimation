@@ -6,6 +6,7 @@ Minemen Club Death Animation
 
 ### How to use
 [Apply this patch to your spigot](https://gist.github.com/dogsbean/9aac69cc00ada079f43f5c8ca29b5861)
+This plugin must work on Spigot with the patch I attached applied.
 
 https://github.com/user-attachments/assets/d39de420-9106-4f12-92de-053d1df19f6d
 
