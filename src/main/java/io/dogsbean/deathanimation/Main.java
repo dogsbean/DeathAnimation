@@ -13,7 +13,14 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+
+        loadConfig();
         registerListeners();
+    }
+
+    private void loadConfig() {
+        getConfig().options().copyDefaults();
+        this.saveDefaultConfig();
     }
 
     private void registerListeners() {

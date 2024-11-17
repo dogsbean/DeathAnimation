@@ -3,7 +3,9 @@ package io.dogsbean.deathanimation.listeners;
 import io.dogsbean.deathanimation.Main;
 import net.minecraft.server.v1_8_R3.EntityPlayer;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -51,6 +53,11 @@ public class PlayerListener implements Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
+                if (Main.getInstance().getConfig().getBoolean("NATURAL-RESPAWN")) {
+                    Location spawnLoc = Bukkit.getWorlds().get(0).getSpawnLocation();
+                    if (spawnLoc != null) player.teleport(Bukkit.getWorlds().get(0).getSpawnLocation());
+                }
+
                 Bukkit.getOnlinePlayers().forEach(players -> {
                     playerEp.getDataWatcher().watch(6, 20.0F);
                     playerEp.setFakingDeath(false);
