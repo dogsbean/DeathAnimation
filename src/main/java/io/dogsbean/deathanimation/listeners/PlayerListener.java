@@ -26,7 +26,7 @@ public class PlayerListener implements Listener {
         }
 
         e.getDrops().clear();
-        simulateDeath(e.getEntity().getPlayer());
+        fakingDeath(e.getEntity().getPlayer());
     }
 
     @EventHandler
@@ -43,7 +43,7 @@ public class PlayerListener implements Listener {
         }
     }
 
-    public void simulateDeath(Player player) {
+    private void fakingDeath(Player player) {
         CraftPlayer playerCp = (CraftPlayer)player;
         EntityPlayer playerEp = playerCp.getHandle();
 
