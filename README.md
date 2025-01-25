@@ -1,6 +1,7 @@
 # MMC Death Animation
 Minemen Club Death Animation
--if you need help add me discord:krouda
+
+if you need help add me discord:krouda
 
 ### Credit
 1. ClubSpigot
