@@ -1,21 +1,29 @@
 # MMC Death Animation
-Minemen Club Death Animation
 
-if you need help add me discord:krouda
+A plugin that replicates the **Minemen Club** style death animation.
+If you need support, contact me on Discord: `krouda`
 
-### Credit
-1. ClubSpigot
-2. BananaSpigot
+### Credits
 
-### How to use
-[Apply this patch to your spigot](https://gist.github.com/dogsbean/9aac69cc00ada079f43f5c8ca29b5861)
-This plugin must work on Spigot with the patch I attached applied.
+* ClubSpigot
+* BananaSpigot
 
-### If you're using PotPvP:
+### How to Use
 
-1. Remove the animateDeath method from your PotPvP code.
-2. Add a new method called fakeDeath and use it in place of animateDeath.
-3. In the addSpectator method, delay the execution of the updateVisibility method by 20 ticks.
+1. **Patch your Spigot build**
+   Apply [this patch](https://gist.github.com/dogsbean/9aac69cc00ada079f43f5c8ca29b5861) to your Spigot source.
 
-https://github.com/user-attachments/assets/ec2c8ac1-843e-4859-a794-208c049d7849
+2. **Build and run**
+   Compile and run your Spigot server with the patched source.
+   This plugin requires the patch to function correctly.
 
+### Integration with PotPvP-SI
+
+If you're using PotPvP-SI:
+
+1. Remove the existing `animateDeath` method.
+2. Create a new method named `fakeDeath`, and use it instead of `animateDeath`.
+3. In the `addSpectator` method, delay the call to `updateVisibility` by **20 ticks**.
+
+> Preview:
+> ![Preview](https://github.com/user-attachments/assets/ec2c8ac1-843e-4859-a794-208c049d7849)
