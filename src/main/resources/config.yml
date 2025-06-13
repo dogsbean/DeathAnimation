@@ -1,1 +1,11 @@
-NATURAL-RESPAWN: false
+settings:
+  # Whether to automatically teleport the player to the spawn point upon death
+  natural-respawn: false
+  
+  # Whether to set the player's health to 20 upon death
+  # (If set to false, health will be 0.5 and only half a heart will be shown)
+  set-health-on-death: true
+  
+  # Respawn delay time (in ticks, 20 ticks = 1 second)
+  # Minimum value: 1 tick
+  respawn-delay: 20

@@ -16,11 +16,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.arkamc.spigot</groupId>
-            <artifactId>Aegis</artifactId>
-            <version>1.8.8-R0-SNAPSHOT</version>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/server.jar</systemPath>
+            <systemPath>${project.basedir}/lib/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
